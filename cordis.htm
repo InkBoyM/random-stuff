@@ -1,4 +1,5 @@
 
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -2020,7 +2021,7 @@
         <div id="hiddenChannelsList">
             <h3 id="hiddenChannelsTitle">Hidden Channels</h3>
             </div>
-        <button id="openPiPButton" onclick="openInteractivePiP()">Open Interactive PiP</button>
+        <button id="openPiPButton" onclick="openInteractivePiP()">Open PiP</button>
         <button onclick="openPrivacy()" style="width:100%; padding:10px; margin:10px 0; background:#5865f2; color:white; border:none; border-radius:8px; cursor:pointer;">Privacy</button>
         <button onclick="openSecurity()" style="width:100%; padding:10px; margin:10px 0; background:#5865f2; color:white; border:none; border-radius:8px; cursor:pointer;">Security</button>
         <button id="settingsClose" onclick="document.getElementById('settingsDiv').style.display='none'">Close</button>
@@ -2028,7 +2029,7 @@
 
     <div id="privacyPopup">
         <h2>Privacy</h2>
-        <p style="font-size: 1.5em; margin: 20px 0;">Hello!</p>
+        <p style="font-size: 1.5em; margin: 20px 0;">We (i) take privacy seriously in Cordis and you must know that we know your accounts password but we will NEVER log in to it no mattter what. We added changing your password on Cordis instead of asking me for more security. With that, we added 2FA on Cordis where you can use Windows Hello, Apple Touch ID, Apple Face ID, Android Biometrics and more to secure your account. Currently is is only being used for changing password so if someone has accsess to your account and wants to changge your password, they cant. There is no way to trigger Passkeys in files or about:blank so I reccomened on your home device you enable it by going to https://inkboym.github.io/random-stuff/cordis.htm </p>
         <button onclick="document.getElementById('privacyPopup').style.display='none'" style="width:100%; padding:10px; margin:10px 0;">Close</button>
     </div>
 
@@ -4690,7 +4691,7 @@
 
     window.verify2FA = async function() {
         if (!twoFAEnabled || !credentialId) {
-            return true; // 2FA not enabled, allow action
+            return true; 
         }
 
         try {
@@ -8437,7 +8438,7 @@
 
     window.openInteractivePiP = async function() {
         if (!('documentPictureInPicture' in window)) {
-            alert("Document Picture-in-Picture is not supported in your browser. Please use a Chromium-based browser (Chrome, Edge, etc.) with the feature enabled.");
+            alert(" Picture-in-Picture is not supported in your browser. Please use a Chromium-based browser (Chrome, Edge, etc.) with the feature enabled.");
             return;
         }
         
@@ -8453,7 +8454,7 @@
             pipWindow.document.write(currentHTML);
             pipWindow.document.close();
             
-            console.log("Document PiP window opened successfully with CordDis content!");
+            console.log(" PiP window opened successfully with CordDis content!");
         } catch (e) {
             console.error("Failed to open PiP:", e);
             alert("Failed to open Picture-in-Picture: " + e.message);
