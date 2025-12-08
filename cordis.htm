@@ -1,7 +1,6 @@
 
 
 
-
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -1043,6 +1042,21 @@
     #imageButton { display: none; }
     #profileDiv, #themeDiv, #userProfilePopup, #editModal, #settingsDiv, #privacyPopup, #securityPopup { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; border-radius: 24px; display:none; z-index:1000; width:300px; text-align:center; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     #profileDiv { max-height: 80vh; overflow-y: auto; }
+    /* Ensure nickname text fits within profile/menu popups */
+    #userProfilePopup, #profileDiv {
+        word-break: break-word;
+    }
+    #popupName {
+        display: block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    /* Allow nickname input row to not overflow */
+    #nicknameInput {
+        min-width: 0;
+    }
     .dark-mode #profileDiv, .dark-mode #themeDiv, .dark-mode #userProfilePopup, .dark-mode #editModal, .dark-mode #settingsDiv, .dark-mode #privacyPopup, .dark-mode #securityPopup { background:#2a2a2a; color:white; }
     .setting-item { display: flex; justify-content: space-between; align-items: center; margin: 15px 0; padding: 10px; }
     .setting-item label { font-weight: 600; }
@@ -3589,7 +3603,9 @@
                     }
                 });
             });
-            chatBox.scrollTop = chatBox.scrollHeight;
+            if (chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 50) {
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
             
             // Hide loading spinner
             hideLoadingSpinner();
@@ -10999,45 +11015,7 @@
     }
 
     </script>
-    <!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-</body>
+    </body>
 
     </html>
 
